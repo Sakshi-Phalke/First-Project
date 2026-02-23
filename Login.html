@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div cl
+ass="container">
+    <h2>Login</h2>
+
+    <input type="email" id="email" class="form-control" placeholder="Email"><br>
+    <input type="password" id="password" class="form-control" placeholder="Password"><br>
+
+    <button class="btn btn-success" onclick="login()">Login</button>
+</div>
+
+<script>
+function login() {
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    let user = users.find(u => u.email === email && u.password === password);
+
+    if (user) {
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        alert("Login Successful!");
+        window.location.href = "profile.html";
+    } else {
+        alert("Invalid Email or Password!");
+    }
+}
+</script>
+</body>
+</html>
